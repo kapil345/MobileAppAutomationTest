@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    machine: true
     working_directory: ~/code
     machine:
         - image: circleci/android:api-25-alpha
