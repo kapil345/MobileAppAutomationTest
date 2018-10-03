@@ -2,10 +2,14 @@ version: 2
 jobs:
   build:
     working_directory: ~/code
-    docker:
-    - image: circleci/android:api-25-alpha
-    environment:
-    - JVM_OPTS: -Xmx3200m
+    machine:
+      java:
+        version: oraclejdk8
+      environment:
+        ANDROID_HOME: /home/ubuntu/android
+        GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"
+        TEST_FLAGS: --configure-on-demand -PdisablePreDex
+        ADB_INSTALL_TIMEOUT: '10'
     steps:
     - checkout
     - run:
@@ -14,6 +18,21 @@ jobs:
     - run:
         name: Download Dependencies
         command: ./AndroidDemo/gradlew dependencies
+    - run:
+        name: checking java
+        command: which java
+    - run:
+        name: downloading sdk managger
+        command: wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+    - run:
+        name: creating andriod folder
+        command: mkdir android
+    - run:
+        name: unzip sdk managger
+        command: unzip sdk-tools-linux-4333796.zip
+    - run:
+        name: setting path
+        command: export PATH=$PATH:$(pwd)/tools/bin
     - run:
         name: Setup emulator
         command: sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
