@@ -4,7 +4,15 @@ jobs:
     working_directory: ~/code
     machine: true
     machine:
-     image: circleci/android:api-25-alpha
+      java:
+    #Because buildtools 24.0.2 and above require Java 1.8 or above
+       version: oraclejdk8
+     environment:
+    #Necessary for the Android SDKs to function properly. Also useful for booting up the emulator in later steps
+      ANDROID_HOME: /home/ubuntu/android
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+      TEST_FLAGS: "--configure-on-demand -PdisablePreDex"
+      ADB_INSTALL_TIMEOUT: "10"
     steps:
       - checkout
      # - restore_cache:
