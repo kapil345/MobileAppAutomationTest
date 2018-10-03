@@ -30,6 +30,19 @@ jobs:
           name: checking java
           command: which java
       - run:
+          name: downloading sdk managger
+          command: wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+      - run:
+          name: creating andriod folder
+          command: mkdir android
+      - run:
+          name: unzip sdk managger
+          command: unzip sdk-tools-linux-4333796.zip 
+      - run:
+          name: list folders 
+          command: ls -la             
+                
+      - run:
           name: Wait emulator
           command: |
             # wait for it to have booted
