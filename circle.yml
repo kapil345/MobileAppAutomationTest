@@ -2,9 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: ~/code
-    machine: true
     machine:
-      java:
+     java:
     #Because buildtools 24.0.2 and above require Java 1.8 or above
        version: oraclejdk8
      environment:
