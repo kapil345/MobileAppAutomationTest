@@ -27,8 +27,8 @@ jobs:
        #     - ~/.gradle
        #   key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-        name: checking java
-        command: which java
+          name: checking java
+          command: which java
       - run:
           name: Wait emulator
           command: |
