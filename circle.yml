@@ -29,10 +29,10 @@ jobs:
         command: mkdir android
     - run:
         name: unzip sdk managger
-        command: unzip sdk-tools-linux-4333796.zip
+        command: unzip sdk-tools-linux-4333796.zip    
     - run:
         name: Setup emulator
-        command: ./tools/bin/sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | ./tools/bin/avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
+        command: yes | ./tools/bin/sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | ./tools/bin/avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
     - run:
         name: Launch emulator
         command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
