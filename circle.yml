@@ -3,6 +3,8 @@ jobs:
   build:
     working_directory: ~/code
     machine: true
+    machine:
+     image: circleci/android:api-25-alpha
     steps:
       - checkout
      # - restore_cache:
