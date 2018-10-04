@@ -16,7 +16,7 @@ jobs:
         command: ls -la  
     - run:
         name: changing directory
-        command: cd AndroidDemo
+        command: cd /home/circleci/project/AndroidDemo
     - run:
         name: files in AndroidDemo folder
         command: ls -la                  
@@ -41,9 +41,6 @@ jobs:
           # unlock the emulator screen
           sleep 30
           adb shell input keyevent 82
-    - run: 
-        name: changing workspace 
-        command: cd /AndroidDemo         
     - run:
         name: Run Test case
         command: ./gradlew app:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.mytaxi.android_demo.CallOnDriverNumberScenario
