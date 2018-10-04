@@ -13,7 +13,13 @@ jobs:
         command: pwd
     - run:
         name: files in this folder
-        command: ls -la           
+        command: ls -la  
+    - run:
+        name: changing directory
+        command: cd AndroidDemo
+    - run:
+        name: files in AndroidDemo folder
+        command: ls -la                  
     - run:
         name: Chmod permissions
         command: sudo chmod +x ./AndroidDemo/gradlew
