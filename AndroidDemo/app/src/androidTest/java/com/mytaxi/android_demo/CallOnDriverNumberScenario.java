@@ -2,6 +2,7 @@ package com.mytaxi.android_demo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 
@@ -18,6 +19,7 @@ import pages.TestDriverProfileFragement;
 import pages.TestLoginFragement;
 import pages.TestWelcomeFragement;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -31,11 +33,10 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by kapil.kumar1 on 28/10/18.
+ * Created by kapil.kumar1 on 28/09/18.
  */
 
 public class CallOnDriverNumberScenario {
-
 
     @Test
     public void useAppContext() throws Exception {
@@ -46,10 +47,12 @@ public class CallOnDriverNumberScenario {
         assertEquals("com.mytaxi.android_demo", appContext.getPackageName());
 
     }
+
     private MainActivity mActivity = null;
+
     @Before
     public void setActivity() {
-        mActivity = activityActivityTestRule1.getActivity();
+
     }
 
     @Rule
@@ -64,12 +67,20 @@ public class CallOnDriverNumberScenario {
     public void execute() throws InterruptedException {
 
         activityActivityTestRule.launchActivity(new Intent(InstrumentationRegistry.getContext(), AuthenticationActivity.class));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getInstrumentation().getUiAutomation().executeShellCommand(
+                    "pm grant " + activityActivityTestRule.getActivity().getPackageName()
+                            + " android.permission.ACCESS_FINE_LOCATION");
+        }
         LoggerUtils.info("Verify login screen");
         TestLoginFragement testLoginFragement = new TestLoginFragement();
         testLoginFragement.clickonLoginButton();
         LoggerUtils.info("Verifying Welcome Screen");
         TestWelcomeFragement testWelcomeFragement = new TestWelcomeFragement(activityActivityTestRule1);
         Thread.sleep(5000);
+
+        MainActivity mActivity = activityActivityTestRule1.getActivity();
         testWelcomeFragement.searchDriverName();
         testWelcomeFragement.validateSearchedResults(mActivity);
         testWelcomeFragement.clickOnSecondDisplayedNameFromList(mActivity);
@@ -79,6 +90,7 @@ public class CallOnDriverNumberScenario {
         testDriverProfileFragement.testCallButtonDisplayed();
         testDriverProfileFragement.clickonDriverCallButton();
     }
+
 
 }
 
