@@ -16,7 +16,7 @@ jobs:
         command: ls -la  
     - run:
         name: changing directory
-        command: cd /home/circleci/project/AndroidDemo
+        command: cd home/circleci/project/AndroidDemo
     - run:
         name: files in AndroidDemo folder
         command: ls -la                  
