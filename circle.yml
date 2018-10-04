@@ -6,7 +6,14 @@ jobs:
     environment:
     - JVM_OPTS: -Xmx3200m
     steps:
-    - checkout
+    - checkout:
+        path: ~/project
+    - run:
+        name: checking path of file
+        command: pwd
+    - run:
+        name: files in this folder
+        command: ls -la           
     - run:
         name: Chmod permissions
         command: sudo chmod +x ./AndroidDemo/gradlew
