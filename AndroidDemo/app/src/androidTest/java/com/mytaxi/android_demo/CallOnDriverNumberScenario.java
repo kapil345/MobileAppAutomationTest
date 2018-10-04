@@ -38,15 +38,6 @@ import static org.junit.Assert.assertEquals;
 
 public class CallOnDriverNumberScenario {
 
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.mytaxi.android_demo", appContext.getPackageName());
-
-    }
 
     private MainActivity mActivity = null;
 
@@ -78,7 +69,7 @@ public class CallOnDriverNumberScenario {
         testLoginFragement.clickonLoginButton();
         LoggerUtils.info("Verifying Welcome Screen");
         TestWelcomeFragement testWelcomeFragement = new TestWelcomeFragement(activityActivityTestRule1);
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         MainActivity mActivity = activityActivityTestRule1.getActivity();
         testWelcomeFragement.searchDriverName();
