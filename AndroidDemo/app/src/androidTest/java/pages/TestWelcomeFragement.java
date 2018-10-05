@@ -30,8 +30,8 @@ import static org.hamcrest.Matchers.not;
 
 public class TestWelcomeFragement {
 
-    public  TestWelcomeFragement(ActivityTestRule activityTestRule){
-        activityTestRule.launchActivity( new Intent(InstrumentationRegistry.getContext(),MainActivity.class));
+    public TestWelcomeFragement(ActivityTestRule activityTestRule) {
+        activityTestRule.launchActivity(new Intent(InstrumentationRegistry.getContext(), MainActivity.class));
         onView(withId(R.id.textSearch)).check(matches(isDisplayed()));
     }
 
@@ -41,20 +41,17 @@ public class TestWelcomeFragement {
 
     }
 
-    public void validateSearchedResults(Activity mActivity){
+    public void validateSearchedResults(Activity mActivity) {
         onView(withText(MyTaxiConstants.DRIVER_NAME))
                 .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
 
     }
 
-    public void clickOnSecondDisplayedNameFromList(Activity mActivity){
-      //  onView(withText(MyTaxiConstants.DRIVER_NAME))
-        //        .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
-          //      .perform(click());
-        onData(anything()).inRoot(RootMatchers.isPlatformPopup()).atPosition(1).perform(click());
-
-
+    public void clickOnSecondDisplayedNameFromList(Activity mActivity) {
+        onView(withText(MyTaxiConstants.DRIVER_NAME))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
     }
 
 }

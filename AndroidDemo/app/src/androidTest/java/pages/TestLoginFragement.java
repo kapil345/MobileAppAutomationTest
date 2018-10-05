@@ -16,14 +16,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class TestLoginFragement {
 
 
-    public TestLoginFragement(){
+    public TestLoginFragement() {
 
         onView(withId(R.id.edt_username)).perform(typeText(MyTaxiConstants.USER_NAME));
         onView(withId(R.id.edt_password)).perform(typeText(MyTaxiConstants.PASS_WORD));
     }
 
 
-    public void clickonLoginButton(){
+    public void clickonLoginButton() {
 
         onView(withId(R.id.btn_login)).perform(click());
 

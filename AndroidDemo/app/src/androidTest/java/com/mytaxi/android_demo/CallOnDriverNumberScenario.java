@@ -39,27 +39,11 @@ import static org.junit.Assert.assertEquals;
 
 public class CallOnDriverNumberScenario {
 
-
     private MainActivity mActivity = null;
 
-    @Before
-    public void setActivity() {
-
-    }
-    public void unlockScreen() {
-        final MainActivity activity = activityActivityTestRule1.getActivity();
-        Runnable wakeUpDevice = new Runnable() {
-            public void run() {
-                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            }
-        };
-        activity.runOnUiThread(wakeUpDevice);
-    }
 
     @Rule
-    public ActivityTestRule<AuthenticationActivity> activityActivityTestRule = new ActivityTestRule<>(AuthenticationActivity.class,false,false);
+    public ActivityTestRule<AuthenticationActivity> activityActivityTestRule = new ActivityTestRule<>(AuthenticationActivity.class, false, false);
 
 
     @Rule
@@ -80,10 +64,8 @@ public class CallOnDriverNumberScenario {
         TestLoginFragement testLoginFragement = new TestLoginFragement();
         testLoginFragement.clickonLoginButton();
         LoggerUtils.info("Verifying Welcome Screen");
-        unlockScreen();
         TestWelcomeFragement testWelcomeFragement = new TestWelcomeFragement(activityActivityTestRule1);
         Thread.sleep(10000);
-
         MainActivity mActivity = activityActivityTestRule1.getActivity();
         testWelcomeFragement.searchDriverName();
         testWelcomeFragement.validateSearchedResults(mActivity);

@@ -15,20 +15,20 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class TestDriverProfileFragement {
 
 
-    public  TestDriverProfileFragement(){
+    public TestDriverProfileFragement() {
         onView(withId(R.id.textViewDriverName)).check(matches(isDisplayed()));
 
     }
 
 
-    public void testCallButtonDisplayed(){
+    public void testCallButtonDisplayed() {
 
         onView(withId(R.id.fab)).check(matches(isDisplayed()));
 
     }
 
 
-    public void clickonDriverCallButton(){
+    public void clickonDriverCallButton() {
         onView(withId(R.id.fab)).perform(click());
 
     }
