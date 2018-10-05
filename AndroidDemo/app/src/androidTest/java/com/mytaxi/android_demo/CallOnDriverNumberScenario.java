@@ -70,7 +70,7 @@ public class CallOnDriverNumberScenario {
         MainActivity mActivity = activityActivityTestRule1.getActivity();
         testWelcomeFragement.searchDriverName();
         Thread.sleep(2000);
-        closeSoftKeyboard();
+     //   closeSoftKeyboard();
         Thread.sleep(2000);
         testWelcomeFragement.validateSearchedResults(mActivity);
         testWelcomeFragement.clickOnSecondDisplayedNameFromList(mActivity);
