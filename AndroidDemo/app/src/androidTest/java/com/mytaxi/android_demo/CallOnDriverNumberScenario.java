@@ -48,7 +48,7 @@ public class CallOnDriverNumberScenario {
 
 
     @Rule
-    public ActivityTestRule<MainActivity> activityActivityTestRule1 = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<MainActivity> activityActivityTestRule1 = new ActivityTestRule<>(MainActivity.class, false, false);
 
 
     @Test
@@ -64,6 +64,7 @@ public class CallOnDriverNumberScenario {
         LoggerUtils.info("Verify login screen");
         TestLoginFragement testLoginFragement = new TestLoginFragement();
         testLoginFragement.clickonLoginButton();
+        Thread.sleep(500);
         LoggerUtils.info("Verifying Welcome Screen");
         TestWelcomeFragement testWelcomeFragement = new TestWelcomeFragement(activityActivityTestRule1);
         Thread.sleep(10000);
@@ -71,7 +72,7 @@ public class CallOnDriverNumberScenario {
         testWelcomeFragement.searchDriverName();
         Thread.sleep(2000);
      //   closeSoftKeyboard();
-        Thread.sleep(2000);
+     //   Thread.sleep(2000);
         testWelcomeFragement.validateSearchedResults(mActivity);
         testWelcomeFragement.clickOnSecondDisplayedNameFromList(mActivity);
         Thread.sleep(2000);
