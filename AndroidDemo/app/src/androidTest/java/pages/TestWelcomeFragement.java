@@ -42,16 +42,18 @@ public class TestWelcomeFragement {
     }
 
     public void validateSearchedResults(Activity mActivity) {
-        onView(withText(MyTaxiConstants.DRIVER_NAME))
-                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+        onView(withText(MyTaxiConstants.DRIVER_NAME)).inRoot(RootMatchers.isPlatformPopup())
+                //.inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
 
     }
 
     public void clickOnSecondDisplayedNameFromList(Activity mActivity) {
-        onView(withText(MyTaxiConstants.DRIVER_NAME))
-                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
-                .perform(click());
+     //   onView(withText(MyTaxiConstants.DRIVER_NAME))
+       //         .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+         //       .perform(click());
+
+        onView(withText(MyTaxiConstants.DRIVER_NAME)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
     }
 
 }
